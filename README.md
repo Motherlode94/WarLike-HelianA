@@ -2,6 +2,10 @@
 
 Application éducative **autonome** pour apprendre ensemble à lire, écrire, communiquer et mieux se comprendre. Pensée notamment pour les enfants ayant une trisomie 21 **et** les parents, proches, enseignants et accompagnants, sans réduire une personne à son diagnostic.
 
+## Mini-jeux pédagogiques
+
+Accès depuis l'accueil ou `games.html`. Quatre jeux : Images & mots, Construis une phrase, On se comprend et Mémoire des images. Trois niveaux librement choisis : Découverte, Pratique et Défi. Pas de temps limite, score ou profil. Contrôle : `node --test tests/*.test.mjs`.
+
 ## Quatre ateliers
 - **Je lis** : associer une image à un mot ; consignes courtes, possibilité de réessayer.
 - **J'écris** : recopier ou saisir des mots du quotidien en s'appuyant sur un modèle.
