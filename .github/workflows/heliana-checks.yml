@@ -18,6 +18,8 @@ jobs:
         run: |
           node --check app.js
           node --check core.js
+          node --check games.js
+          node --check games-core.js
       - name: Lesson and communication tests
         run: node --test tests/*.test.mjs
       - name: Static asset integrity
@@ -26,3 +28,7 @@ jobs:
           test -f style.css
           test -f app.js
           test -f core.js
+          test -f games.html
+          test -f games.css
+          test -f games.js
+          test -f games-core.js
