@@ -1,3 +1,4 @@
+import {vocabulary,expressions,interactions} from './curriculum.js';
 // Generic lessons; no assumptions about any individual's understanding.
 export const reads=[{emoji:'🍎',word:'POMME',choices:['CHAT','POMME','LUNE']},{emoji:'🐱',word:'CHAT',choices:['CHAT','MAISON','LIVRE']},{emoji:'☀️',word:'SOLEIL',choices:['SOLEIL','EAU','POMME']},{emoji:'🏠',word:'MAISON',choices:['LUNE','MAISON','CHAT']}];
 export const writes=[{emoji:'👋',word:'BONJOUR'},{emoji:'💚',word:'MERCI'},{emoji:'👩‍👧',word:'MAMAN'},{emoji:'💧',word:'EAU'}];
@@ -9,6 +10,16 @@ export const situations=[
  {title:'Choix et consentement',context:'Une personne indique « non » quand tu proposes une activité.',options:['Respecter le refus et proposer une autre option si elle le souhaite','Insister jusqu’à obtenir un oui','Faire semblant de ne pas comprendre'],correct:0,reason:'Un refus est une communication. Vérifiez les besoins, mais respectez les choix et le consentement.'},
  {title:'Changer de canal',context:'La parole est difficile à comprendre dans un lieu bruyant.',options:['Parler beaucoup plus vite','Proposer calmement une image, un geste ou l’écriture, si cela convient','Abandonner la conversation'],correct:1,reason:'Plusieurs modes de communication peuvent se compléter. Demandez ce qui aide la personne.'}
 ];
+// The original short activities remain as foundations; additional content is shared
+// between games, workshops and family practice without storing user progress.
+for(let i=0;i<vocabulary.length;i++){
+ const item=vocabulary[i],wrong1=vocabulary[(i+5)%vocabulary.length].word,wrong2=vocabulary[(i+11)%vocabulary.length].word;
+ const options=[item.word,wrong1,wrong2];
+ reads.push({emoji:item.emoji,word:item.word,choices:[options[i%3],options[(i+1)%3],options[(i+2)%3]]});
+ writes.push({emoji:item.emoji,word:item.word});
+}
+for(const item of expressions)symbols.push({...item});
+situations.push(...interactions);
 export const normalizeWord=x=>String(x).normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().replace(/\s+/g,' ').toLocaleUpperCase('fr');
 export function isReadingCorrect(item,response){return item.choices.includes(response)&&response===item.word}
 export function isWritingCorrect(item,response){return normalizeWord(response)===normalizeWord(item.word)}
