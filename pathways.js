@@ -69,6 +69,13 @@ function render(){
  else if(step.kind==='routine')ordered('Replace les actions dans le bon ordre.',material.steps,material.steps);
  else if(step.kind==='expression')express(material);
  else if(step.kind==='duo')duo(material);
+ if(preferences.duo&&step.kind!=='duo'){
+  const partner=make('aside',undefined,'duo-role');
+  partner.append(make('h3','🤝 Jouer à deux'),
+   make('p','Personne A : essaie à ton rythme ou utilise un geste, une image ou la parole.'),
+   make('p','Personne B : laisse du temps, demande si tu as bien compris, et propose une aide seulement si elle est souhaitée.'));
+  body.append(partner);
+ }
 }
 function labelFor(kind){return {picture:'Images et mots',phrase:'Construire une phrase',situation:'Mieux se comprendre',reading:'Histoire',routine:'Étapes du quotidien',expression:'Dire ce que je veux',duo:'Écouter et échanger'}[kind]||'Activité';}
 function question(prompt,choices,right,success){
