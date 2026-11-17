@@ -4,7 +4,15 @@ Application éducative **autonome** pour apprendre ensemble à lire, écrire, co
 
 ## Mini-jeux pédagogiques
 
-Accès depuis l'accueil ou `games.html`. Quatre jeux : Images & mots, Construis une phrase, On se comprend et Mémoire des images. Trois niveaux librement choisis : Découverte, Pratique et Défi. Pas de temps limite, score ou profil. Contrôle : `node --test tests/*.test.mjs`.
+Accès depuis l'accueil ou `games.html`. Douze jeux : Images & mots, Construis une phrase, On se comprend, Mémoire visuelle, Syllabes, Lettres manquantes, Étapes du quotidien, À toi de répondre, Mes ressentis, Exprimer un besoin, Petites histoires et Trouve la catégorie. Trois niveaux librement choisis : Découverte, Pratique et Défi. Pas de temps limite, score ou profil. Contrôle : `node --test tests/*.test.mjs`.
+
+## Contenu étendu v3
+
+- Lecture et écriture : 36 nouveaux mots illustrés en complément du contenu initial, avec vérification de réponses et voix facultative.
+- Communication : 24 expressions supplémentaires sur la planche de messages (sans prétendre remplacer la CAA personnalisée).
+- Accompagnants : 15 nouvelles situations pour respecter les choix, vérifier les messages, reformuler et laisser du temps.
+- Mini-jeux : 12 activités jouables, des dizaines de questions, routines et histoires ; navigation tactile et clavier, niveaux librement choisis.
+- Pas de chronomètre obligatoire, score, comparaison d'utilisateurs ou stockage de données personnelles.
 
 ## Quatre ateliers
 - **Je lis** : associer une image à un mot ; consignes courtes, possibilité de réessayer.
