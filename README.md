@@ -2,6 +2,12 @@
 
 Application éducative **autonome** pour apprendre ensemble à lire, écrire, communiquer et mieux se comprendre. Pensée notamment pour les enfants ayant une trisomie 21 **et** les parents, proches, enseignants et accompagnants, sans réduire une personne à son diagnostic.
 
+## Parcours pédagogiques v4
+
+Page `pathways.html` : **quatre parcours de six activités** (mots du quotidien, choix et besoins, compréhension à deux, histoires et échanges). L'utilisateur peut avancer, revenir en arrière, réessayer et varier les exercices. Le mode à deux propose des prises de parole distinctes avec possibilité de passer ou pratiquer seul, sans interprétation automatique des intentions.
+
+Préférences de session, sans stockage : taille normale/grande/très grande, contraste, espacement, consignes courtes et synthèse vocale si disponible. Les parcours n'utilisent ni âge ni diagnostic pour déterminer la difficulté. Pas de profil personnel, compte, classement, score ou stockage des réponses.
+
 ## Mini-jeux pédagogiques
 
 Accès depuis l'accueil ou `games.html`. Douze jeux : Images & mots, Construis une phrase, On se comprend, Mémoire visuelle, Syllabes, Lettres manquantes, Étapes du quotidien, À toi de répondre, Mes ressentis, Exprimer un besoin, Petites histoires et Trouve la catégorie. Trois niveaux librement choisis : Découverte, Pratique et Défi. Pas de temps limite, score ou profil. Contrôle : `node --test tests/*.test.mjs`.

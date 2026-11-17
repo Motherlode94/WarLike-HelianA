@@ -21,6 +21,8 @@ jobs:
           node --check games.js
           node --check games-core.js
           node --check curriculum.js
+          node --check pathways.js
+          node --check pathways-core.js
       - name: Lesson and communication tests
         run: node --test tests/*.test.mjs
       - name: Static asset integrity
@@ -34,3 +36,7 @@ jobs:
           test -f games.js
           test -f games-core.js
           test -f curriculum.js
+          test -f pathways.html
+          test -f pathways.css
+          test -f pathways.js
+          test -f pathways-core.js
