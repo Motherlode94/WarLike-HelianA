@@ -1,7 +1,7 @@
 name: HelianA accessibility and learning checks
 on:
   pull_request:
-    branches: [main]
+    branches: [main, feat/heliana-v5-voice-aac-accessibility-20261119]
   push:
     branches: [main]
 jobs:
