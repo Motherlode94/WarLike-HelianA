@@ -24,9 +24,25 @@ function writeLesson(){const item=writes[index%writes.length];instruction.textCo
  const actions=el('div','actions');actions.append(button('Vérifier mon mot','',validate),button('🔊 Écouter','outline',()=>speak(item.word.toLocaleLowerCase('fr'))));exercise.append(image,model,label,input,actions);
 }
 function talkLesson(){instruction.textContent='Choisis des images pour dire ce que tu veux. Tu peux aussi parler ou faire un geste.';
- const output=el('div','phrase',phrase.length?phrase.join(' · '):'Choisis une image.');output.setAttribute('aria-live','polite');const grid=el('div','symbols');
- for(const symbol of symbols){const btn=button('','symbol',()=>{phrase=appendSymbol(phrase,symbol.text);talkLesson();speak(symbol.text)});btn.setAttribute('aria-label',symbol.text);btn.append(el('span','',symbol.emoji),el('span','',symbol.text));grid.append(btn)}
- const actions=el('div','actions');actions.append(button('🔊 Dire mon message','',()=>phrase.length?speak(phrase.join('. ')):respond('Choisis une image pour commencer.')),button('↶ Effacer le dernier','outline',()=>{phrase.pop();talkLesson()}),button('Tout effacer','outline',()=>{phrase=[];talkLesson()}));exercise.replaceChildren(output,grid,actions);
+ const output=el('div','phrase');output.setAttribute('aria-live','polite');output.setAttribute('aria-atomic','true');
+ const grid=el('div','symbols');
+ const refresh=()=>{output.textContent=phrase.length?phrase.join(' · '):'Choisis une image.';};
+ for(const symbol of symbols){
+  const btn=button('','symbol',()=>{
+   phrase=appendSymbol(phrase,symbol.text);
+   refresh();speak(symbol.text);
+   // Keep the focused button in place: important for keyboard and switch access.
+  });
+  btn.setAttribute('aria-label',symbol.text);
+  btn.append(el('span','',symbol.emoji),el('span','',symbol.text));grid.append(btn);
+ }
+ const actions=el('div','actions');
+ actions.append(
+  button('🔊 Dire mon message','',()=>phrase.length?speak(phrase.join('. ')):respond('Choisis une image pour commencer.')),
+  button('↶ Effacer le dernier','outline',()=>{phrase.pop();refresh();}),
+  button('Tout effacer','outline',()=>{phrase=[];refresh();})
+ );
+ exercise.replaceChildren(output,grid,actions);refresh();
 }
 function understandLesson(){const situation=situations[index%situations.length];instruction.textContent='Lis la situation. Choisis une réponse respectueuse et adaptée.';
  const box=el('div','scenario'),title=el('h3','',situation.title),description=el('p','',situation.context),choices=el('div','scenarios');box.append(title,description);exercise.append(box);
