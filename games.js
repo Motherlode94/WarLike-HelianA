@@ -7,7 +7,7 @@ function say(text){if(!('speechSynthesis' in window)){feedback.textContent='Lect
 function instruction(text){$('gameInstruction').textContent=text;if($('speakSetting').checked)say(text)}
 function notify(text){feedback.textContent=text}
 function finish(text){done=true;$('nextChallenge').hidden=false;notify(text)}
-function chooseGame(id){if(!GAMES.some(g=>g.id===id))return;game=id;round=0;render()}
+function chooseGame(id){if(!GAMES.some(g=>g.id===id))return;game=id;round=0;render();$('gameTitle').focus()}
 function reset(){done=false;selectedWords=[];picked=[];matched=new Set();lock=false;feedback.textContent='';$('nextChallenge').hidden=true;target.replaceChildren()}
 function renderMenu(){$('gameMenu').replaceChildren();for(const g of GAMES){const b=button('', '',()=>chooseGame(g.id));b.append(element('span','',g.icon),document.createTextNode(g.name));if(g.id===game)b.setAttribute('aria-current','page');$('gameMenu').append(b)}}
 function render(){reset();renderMenu();const selected=GAMES.find(g=>g.id===game);$('gameTitle').textContent=selected.name;$('gamePosition').textContent='JEU '+(GAMES.indexOf(selected)+1)+' / '+GAMES.length;
