@@ -12,7 +12,7 @@ test('every communication message has a dedicated original vector icon',()=>{
  const pictograms=source('pictograms.js');
  assert.match(pictograms,/createElementNS/);
  assert.match(pictograms,/aria-hidden/);
- assert.doesNotMatch(pictograms,/fetch\\(/);
+ assert.doesNotMatch(pictograms,/fetch\(/);
  const board=source('communication.js');
  assert.match(board,/symbolIcon\(item\.id\)/);
  assert.match(board,/node\('span',item\.label\)/);
