@@ -18,7 +18,7 @@ test('communication board keeps existing buttons and focus when symbols are chos
  const begin=js.indexOf('function talkLesson(){');
  const end=js.indexOf('function understandLesson()',begin);
  assert.ok(begin!==-1&&end>begin);
- const block=js.slice(begin,end);
+ const block=js.slice(begin+'function talkLesson(){'.length,end);
  assert.match(block,/const refresh=\(\)=>/);
  assert.match(block,/phrase=appendSymbol\(phrase,symbol\.text\)/);
  assert.doesNotMatch(block,/talkLesson\(\)/);
