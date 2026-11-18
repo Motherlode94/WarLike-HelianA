@@ -27,6 +27,7 @@ function choose(id){
  if(!pathwayById(id))return;
  current=id;position=0;variation=0;render();
  $('learningArea').scrollIntoView({block:'start',behavior:'auto'});
+ $('activityTitle').focus();
 }
 function catalog(){
  const host=$('pathCatalog');host.replaceChildren();
@@ -154,8 +155,9 @@ for(const [id,key,read] of [
   if(current)render();
  });
 }
-$('previousActivity').addEventListener('click',()=>{position=Math.max(0,position-1);render();});
-$('retryActivity').addEventListener('click',()=>{variation++;render();});
-$('nextActivity').addEventListener('click',()=>{if(completed){position=advance(position,pathwayLength(current));render();}});
+$('previousActivity').addEventListener('click',()=>{position=Math.max(0,position-1);render();$('activityTitle').focus();});
+$('retryActivity').addEventListener('click',()=>{variation++;render();$('activityTitle').focus();});
+$('nextActivity').addEventListener('click',()=>{if(completed){position=advance(position,pathwayLength(current));render();$('activityTitle').focus();}});
 $('repeatActivity').addEventListener('click',()=>{if(current)say($('activityInstruction').textContent,{manual:true});});
+$('stopActivityVoice').addEventListener('click',()=>{if('speechSynthesis' in window)speechSynthesis.cancel();});
 paintSettings();catalog();
