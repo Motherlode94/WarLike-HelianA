@@ -1,7 +1,7 @@
 name: HelianA accessibility and learning checks
 on:
   pull_request:
-    branches: [main, feat/heliana-v5-voice-aac-accessibility-20261119, feat/heliana-v6-communication-print-20261119]
+    branches: [main, feat/heliana-v5-voice-aac-accessibility-20261119, feat/heliana-v6-communication-print-20261119, feat/heliana-v7-symbols-duo-qa-20261119]
   push:
     branches: [main]
 jobs:
@@ -20,5 +20,6 @@ jobs:
           node --check communication.js
           node --check pictograms.js
           node --check duo-practice.js
+          node --check facilitator.js
       - name: Test learning content and accessibility
         run: node --test tests/*.test.mjs
