@@ -2,6 +2,16 @@
 
 Application éducative **autonome** pour apprendre ensemble à lire, écrire, communiquer et mieux se comprendre. Pensée notamment pour les enfants ayant une trisomie 21 **et** les parents, proches, enseignants et accompagnants, sans réduire une personne à son diagnostic.
 
+## Communication v6 — planche de messages et cartes imprimables
+
+La nouvelle page **[communication.html](communication.html)** propose une planche de communication autonome, avec des exemples classés en trois groupes : **besoins**, **choix** et **échanges**. Les personnes peuvent sélectionner des phrases à montrer ou à faire lire par la synthèse vocale facultative du navigateur, puis retirer ou effacer les messages.
+
+L'impression A4 prépare des **cartes sélectionnées** pour une utilisation hors écran, sans serveur, compte, enregistrement de réponse ou suivi des choix. La page utilise des boutons HTML natifs, un statut accessible et une présentation responsive ; une option agrandit les cartes.
+
+**Précautions :** les emojis et propositions de phrases ne constituent pas une bibliothèque de pictogrammes CAA validée. Vérifier leur compréhension et leur signification avec chaque personne ; respecter ses refus, ses gestes et ses autres moyens de communication. Cette planche ne remplace pas une évaluation individualisée de communication alternative et améliorée.
+
+Les fichiers `communication-data.js`, `communication.js` et `communication.css` séparent le vocabulaire générique, le comportement et l'impression. Le test `tests/communication-v6.test.mjs` vérifie la cohérence des cartes, la limite de longueur des messages, la sélection et l'absence de stockage local ou d'appel réseau.
+
 ## Accessibilité v5 — lecture vocale et navigation sans interruption
 
 Cette évolution consolide les ateliers, les quatre parcours et les douze mini-jeux, sans ajouter de compte ni d'enregistrement des réponses.
