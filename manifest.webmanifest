@@ -1,0 +1,19 @@
+{
+  "name": "WarLike HelianA",
+  "short_name": "HelianA",
+  "description": "Apprendre et communiquer ensemble, sans compte ni collecte.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f8f3",
+  "theme_color": "#e9f4ed",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "./heliana-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
