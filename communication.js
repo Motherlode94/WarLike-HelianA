@@ -5,7 +5,7 @@ let messages=[],selected=new Set(),category='all';
 const node=(tag,text,klass)=>{const el=document.createElement(tag);if(text!==undefined)el.textContent=text;if(klass)el.className=klass;return el};
 function speak(message){
  if(!('speechSynthesis' in window)){feedback('La lecture vocale n’est pas disponible ici. Tu peux montrer ou dire ton message.');return}
- try{speechSynthesis.cancel();const voice=new SpeechSynthesisUtterance(message);voice.lang='fr-FR';voice.rate=.82;speechSynthesis.speak(voice)}
+ try{speechSynthesis.cancel();const voice=new SpeechSynthesisUtterance(message);voice.lang='fr-FR';voice.rate=Number($('speechRate').value)||.85;speechSynthesis.speak(voice)}
  catch{feedback('La lecture vocale n’est pas disponible sur cet appareil.')}
 }
 function feedback(value){$('boardFeedback').textContent=value}
@@ -56,6 +56,7 @@ $('boardCategory').addEventListener('change',e=>{
  category=BOARD_CATEGORIES.some(c=>c.id===value)?value:'all';display();
 });
 $('largeCards').addEventListener('change',e=>document.body.classList.toggle('large-board',e.target.checked));
+$('highContrast').addEventListener('change',e=>document.body.classList.toggle('contrast',e.target.checked));
 $('sayMessage').addEventListener('click',()=>{if(messages.length)speak(messages.join('. '))});
 $('voiceStop').addEventListener('click',()=>{if('speechSynthesis' in window)speechSynthesis.cancel()});
 $('undoMessage').addEventListener('click',()=>{messages.pop();refreshMessage();feedback('Dernier message retiré.')});
