@@ -1,4 +1,5 @@
 import {BOARD_ITEMS,BOARD_CATEGORIES,categoryItems,selection,addMessage} from './communication-data.js';
+import {symbolIcon} from './pictograms.js';
 const $=id=>document.getElementById(id);
 let messages=[],selected=new Set(),category='all';
 const node=(tag,text,klass)=>{const el=document.createElement(tag);if(text!==undefined)el.textContent=text;if(klass)el.className=klass;return el};
@@ -19,7 +20,8 @@ function refreshPrint(){
  const cards=selection(BOARD_ITEMS,[...selected]);
  for(const item of cards){
   const card=node('article',undefined,'print-card');
-  card.append(node('div',item.icon,'print-icon'),node('strong',item.label));
+  const illustration=node('div',undefined,'print-icon');illustration.append(symbolIcon(item.id));
+  card.append(illustration,node('strong',item.label));
   $('printGrid').append(card);
  }
  $('selectedCount').textContent=cards.length+' carte'+(cards.length===1?'':'s')+' sélectionnée'+(cards.length===1?'':'s')+'.';
@@ -31,7 +33,8 @@ function display(){
   const wrap=node('div',undefined,'communication-card');
   const use=node('button',undefined,'communication-use');use.type='button';
   use.setAttribute('aria-label','Ajouter le message : '+item.label);
-  use.append(node('span',item.icon,'communication-icon'),node('span',item.label));
+  const illustration=node('span',undefined,'communication-icon');illustration.append(symbolIcon(item.id));
+  use.append(illustration,node('span',item.label));
   use.addEventListener('click',()=>{
    messages=addMessage(messages,item.label);
    refreshMessage();
