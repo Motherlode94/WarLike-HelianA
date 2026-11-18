@@ -2,6 +2,15 @@
 
 Application éducative **autonome** pour apprendre ensemble à lire, écrire, communiquer et mieux se comprendre. Pensée notamment pour les enfants ayant une trisomie 21 **et** les parents, proches, enseignants et accompagnants, sans réduire une personne à son diagnostic.
 
+## HelianA V8 — guide accompagnant et préférences de communication
+
+- **Guide accompagnant imprimable** : la page [facilitator.html](facilitator.html) propose six repères non prescriptifs pour recueillir le consentement, choisir les moyens de communication, laisser du temps, clarifier les messages, respecter les refus et adapter l'activité. Les cases à cocher sont facultatives, conservées en mémoire uniquement durant l'affichage et ne sont jamais enregistrées.
+- **Planche de communication** : le contraste renforcé et trois vitesses de lecture vocale sont directement réglables depuis [communication.html](communication.html). Les préférences ne sont pas persistées ni envoyées à un serveur.
+- **Impression A4** : feuille de conseils lisible sur papier, sans données personnelles, en complément des cartes de communication.
+- **Tests V8** : `node --test tests/*.test.mjs` vérifie les six étapes, l'absence de stockage et les nouvelles commandes.
+
+**Ces améliorations techniques ne constituent ni une certification d'accessibilité, ni une validation clinique ou CAA.** L'évaluation avec les utilisateurs et professionnels reste à réaliser suivant [le protocole](docs/ACCESSIBILITY_VALIDATION_PROTOCOL.md).
+
 ## HelianA v7 — symboles vectoriels et dialogues à deux
 
 - **Pictogrammes vectoriels originaux** : les quinze cartes de communication affichent des symboles SVG de style homogène, dessinés dans `pictograms.js`, accompagnés systématiquement de leur étiquette textuelle. Ils sont imprimés en A4 et restent lisibles sans couleur.
