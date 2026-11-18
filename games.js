@@ -121,7 +121,8 @@ function sortingGame(){
 
 $('level').addEventListener('change',e=>{if(LEVELS.includes(e.target.value)){level=e.target.value;round=0;render()}});
 $('bigSetting').addEventListener('change',e=>document.body.classList.toggle('large',e.target.checked));
-$('restartGame').addEventListener('click',()=>{round=0;render()});
-$('nextChallenge').addEventListener('click',()=>{round++;render()});
+$('restartGame').addEventListener('click',()=>{round=0;render();$('gameTitle').focus()});
+$('nextChallenge').addEventListener('click',()=>{round++;render();$('gameTitle').focus()});
 $('hearInstruction').addEventListener('click',()=>say($('gameInstruction').textContent));
+$('stopGameVoice').addEventListener('click',()=>{if('speechSynthesis' in window)speechSynthesis.cancel()});
 render();
