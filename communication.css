@@ -5,3 +5,6 @@
 .communication-icon,.print-icon{display:flex;align-items:center;justify-content:center}
 .large-board .heliana-pictogram{width:5rem;height:5rem}
 @media print{.heliana-pictogram{width:27mm;height:27mm;color:#000!important;stroke:#000!important}.print-icon{font-size:initial}}
+
+/* V9 — private, in-memory phrase composition */
+.custom-message-controls{display:flex;align-items:stretch;flex-wrap:wrap;gap:12px;margin-top:10px}.custom-message-controls input{flex:1 1 280px;min-width:0;padding:13px;border:2px solid #7eaf9b;border-radius:12px;background:white;color:#203d35}.custom-message-controls button{background:#126d61;color:white;border:0;border-radius:12px;padding:13px 19px;font-weight:800;min-height:48px}.custom-message label{font-weight:750}.custom-message #phraseFeedback{min-height:24px}.custom-message-controls input:focus-visible{outline:4px solid #164fa5;outline-offset:3px}@media print{.custom-message{display:none!important}}
