@@ -7,7 +7,7 @@ function say(text){if(!('speechSynthesis' in window)){feedback.textContent='Lect
 function instruction(text){$('gameInstruction').textContent=text;if($('speakSetting').checked)say(text)}
 function notify(text){feedback.textContent=text}
 function finish(text){done=true;$('nextChallenge').hidden=false;notify(text)}
-function chooseGame(id){if(!GAMES.some(g=>g.id===id))return;game=id;round=0;render()}
+function chooseGame(id){if(!GAMES.some(g=>g.id===id))return;game=id;round=0;render();$('gameTitle').focus()}
 function reset(){done=false;selectedWords=[];picked=[];matched=new Set();lock=false;feedback.textContent='';$('nextChallenge').hidden=true;target.replaceChildren()}
 function renderMenu(){$('gameMenu').replaceChildren();for(const g of GAMES){const b=button('', '',()=>chooseGame(g.id));b.append(element('span','',g.icon),document.createTextNode(g.name));if(g.id===game)b.setAttribute('aria-current','page');$('gameMenu').append(b)}}
 function render(){reset();renderMenu();const selected=GAMES.find(g=>g.id===game);$('gameTitle').textContent=selected.name;$('gamePosition').textContent='JEU '+(GAMES.indexOf(selected)+1)+' / '+GAMES.length;
@@ -121,7 +121,8 @@ function sortingGame(){
 
 $('level').addEventListener('change',e=>{if(LEVELS.includes(e.target.value)){level=e.target.value;round=0;render()}});
 $('bigSetting').addEventListener('change',e=>document.body.classList.toggle('large',e.target.checked));
-$('restartGame').addEventListener('click',()=>{round=0;render()});
-$('nextChallenge').addEventListener('click',()=>{round++;render()});
+$('restartGame').addEventListener('click',()=>{round=0;render();$('gameTitle').focus()});
+$('nextChallenge').addEventListener('click',()=>{round++;render();$('gameTitle').focus()});
 $('hearInstruction').addEventListener('click',()=>say($('gameInstruction').textContent));
+$('stopGameVoice').addEventListener('click',()=>{if('speechSynthesis' in window)speechSynthesis.cancel()});
 render();

@@ -1,0 +1,21 @@
+name: HelianA accessibility and learning checks
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check browser JavaScript syntax
+        run: |
+          node --check app.js
+          node --check pathways.js
+          node --check games.js
+      - name: Test learning content and accessibility
+        run: node --test tests/*.test.mjs
