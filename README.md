@@ -2,6 +2,19 @@
 
 Application éducative **autonome** pour apprendre ensemble à lire, écrire, communiquer et mieux se comprendre. Pensée notamment pour les enfants ayant une trisomie 21 **et** les parents, proches, enseignants et accompagnants, sans réduire une personne à son diagnostic.
 
+## Accessibilité v5 — lecture vocale et navigation sans interruption
+
+Cette évolution consolide les ateliers, les quatre parcours et les douze mini-jeux, sans ajouter de compte ni d'enregistrement des réponses.
+
+- **Lecture vocale sur demande** : dans les parcours, les boutons « Écouter la consigne » et « Dire ce message » fonctionnent indépendamment de l'option de lecture *automatique*. Celle-ci reste désactivée par défaut.
+- **Arrêter la voix** : une commande explicite est disponible sur l'accueil, les parcours et les mini-jeux. Le navigateur conserve la liberté d'autoriser ou non la synthèse vocale.
+- **Planche de communication** : les symboles, leurs boutons et le focus clavier restent en place après l'ajout ou le retrait d'un élément du message. L'utilisateur peut construire un message sans repartir au début des commandes à chaque clic.
+- **Orientation clavier/lecteur d'écran** : les ateliers exposent leur état par `aria-pressed`, et les changements de parcours ou de mini-jeu placent le focus sur le nouveau titre.
+
+Ces protections améliorent l'usage technique, mais **ne constituent pas une certification WCAG ni une validation auprès d'utilisateurs réels**. Une évaluation avec des personnes concernées et leurs accompagnants demeure nécessaire.
+
+Contrôle du dépôt : `node --test tests/*.test.mjs`. La CI de la nouvelle PR exécute aussi le contrôle de syntaxe des scripts.
+
 ## Parcours pédagogiques v4
 
 Page `pathways.html` : **quatre parcours de six activités** (mots du quotidien, choix et besoins, compréhension à deux, histoires et échanges). L'utilisateur peut avancer, revenir en arrière, réessayer et varier les exercices. Le mode à deux propose des prises de parole distinctes avec possibilité de passer ou pratiquer seul, sans interprétation automatique des intentions.
