@@ -6,8 +6,8 @@ let current=null,position=0,variation=0,completed=false,duoConfirmed=[false,fals
 let preferences={...DISPLAY_DEFAULTS};
 const make=(tag,text,className='')=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(className)e.className=className;return e};
 const button=(text,action,className='')=>{const b=make('button',text,className);b.type='button';b.addEventListener('click',action);return b};
-function say(message){
- if(!preferences.voice)return;
+function say(message,{manual=false}={}){
+ if(!manual&&!preferences.voice)return;
  if(!('speechSynthesis' in window)){feedback.textContent='La lecture vocale n’est pas disponible ici.';return;}
  try{speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(message);utterance.lang='fr-FR';utterance.rate=.82;speechSynthesis.speak(utterance)}catch{feedback.textContent='La lecture vocale n’est pas disponible ici.';}
 }
@@ -125,7 +125,7 @@ function express(item){
  setInstruction('Ce message est une proposition. Tu peux le dire, choisir une autre façon de communiquer ou passer.','Choisis comment t’exprimer.');
  const card=make('div',undefined,'step-card');card.append(make('span',emoji,'symbol-big'),make('p',label));body.append(card);
  const options=make('div',undefined,'duo-confirm');
- options.append(button('🔊 Dire ce message',()=>{if(preferences.voice)say(label);else notice('Tu peux utiliser la lecture vocale dans les préférences, ou dire ton message autrement.');}),
+ options.append(button('🔊 Dire ce message',()=>{say(label,{manual:true});}),
   button('Ce message me convient',()=>finish('Ton choix est respecté.'),
   ),button('Je préfère passer',()=>finish('Tu peux choisir de ne pas répondre.')));
  body.append(options);
@@ -157,5 +157,5 @@ for(const [id,key,read] of [
 $('previousActivity').addEventListener('click',()=>{position=Math.max(0,position-1);render();});
 $('retryActivity').addEventListener('click',()=>{variation++;render();});
 $('nextActivity').addEventListener('click',()=>{if(completed){position=advance(position,pathwayLength(current));render();}});
-$('repeatActivity').addEventListener('click',()=>{if(current)say($('activityInstruction').textContent);});
+$('repeatActivity').addEventListener('click',()=>{if(current)say($('activityInstruction').textContent,{manual:true});});
 paintSettings();catalog();
