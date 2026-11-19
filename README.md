@@ -2,6 +2,14 @@
 
 Application éducative **autonome** pour apprendre ensemble à lire, écrire, communiquer et mieux se comprendre. Pensée notamment pour les enfants ayant une trisomie 21 **et** les parents, proches, enseignants et accompagnants, sans réduire une personne à son diagnostic.
 
+## Dernière passe de fiabilité — navigation et hors ligne
+
+La navigation est fermée **au chargement**, y compris sur les quatre pages de catégories. Un seul sous-menu peut être ouvert à la fois ; il se ferme également quand le focus ou le pointeur quitte le menu, et la touche Échap retourne le focus au titre. Le lien « Atelier Je m’exprime » ouvre désormais l'atelier correspondant via une ancre locale, sans requête contenant une réponse personnelle.
+
+Le mode hors ligne **n'annonce plus « prêt » au simple enregistrement du Service Worker** : la page attend son activation et vérifie plusieurs pages essentielles en CacheStorage. Le cache est versionné pour remplacer les anciennes ressources ; il ne contient que des fichiers pédagogiques publics.
+
+Ces mécanismes ont des tests automatiques, mais leur qualité en conditions réelles doit encore être évaluée selon le [protocole navigateur, mobile et PWA](docs/NAVIGATION_PWA_ACCEPTANCE.md).
+
 ## Navigation et sous-dossiers — HelianA
 
 Le site possède un **menu principal hiérarchique** sur l’accueil et chaque page pédagogique. Les sous-menus sont réalisés en HTML natif `<details>/<summary>` : ils s’ouvrent au clavier, au tactile et à la souris sans dépendre d’un script d’interface.
