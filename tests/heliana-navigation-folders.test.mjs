@@ -17,7 +17,7 @@ test('each page has accessible nested navigation with all categories',()=>{
  for(const file of files){
   const html=readFileSync(new URL(file,root),'utf8');
   assert.match(html,/<nav class="heliana-site-nav" aria-label="Navigation principale">/,file);
-  assert.equal((html.match(/class="heliana-nav-group"/g)||[]).length,4,file);
+  assert.equal((html.match(/class="heliana-nav-group"(?: open)?/g)||[]).length,4,file);
   assert.equal((html.match(/class="heliana-nav-submenu"/g)||[]).length,4,file);
   for(const name of ['Apprendre','Communiquer','Créer','Accompagner'])
    assert.ok(html.includes(' '+name+'</summary>'),file+' missing '+name);
