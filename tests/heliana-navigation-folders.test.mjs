@@ -52,3 +52,20 @@ test('PWA precaches category hubs and does not cache responses or user data',()=
  assert.match(sw,/WHITELIST\.has\(url\.pathname\)/);
  assert.doesNotMatch(sw,/localStorage|sessionStorage|indexedDB|caches\.open\('user/);
 });
+
+test('all pages load one common navigation controller from correct relative path',()=>{
+ for(const file of files){
+  const html=readFileSync(new URL(file,root),'utf8');
+  const relative=file.includes('/')?'../navigation.js':'./navigation.js';
+  assert.ok(html.includes('src="'+relative+'"'),file+' does not load navigation.js');
+ }
+});
+test('closed details submenus stay hidden and opening one closes others',()=>{
+ const css=readFileSync(new URL('style.css',root),'utf8');
+ const js=readFileSync(new URL('navigation.js',root),'utf8');
+ assert.match(css,/\.heliana-nav-group:not\(\[open\]\)>\.heliana-nav-submenu\{display:none!important\}/);
+ assert.match(js,/if\(other!==group\)other\.open=false/);
+ assert.match(js,/siteNav\.contains\(event\.target\)/);
+ assert.match(js,/event\.key==='Escape'/);
+ assert.match(readFileSync(new URL('service-worker.js',root),'utf8'),/'\.\/navigation\.js'/);
+});

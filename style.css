@@ -28,3 +28,8 @@
 @media(max-width:720px){.heliana-nav-inner{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:10px 15px}.heliana-nav-home,.heliana-nav-group>summary{min-height:52px;padding:11px 12px}.heliana-nav-group{position:static}.heliana-nav-submenu{position:static;max-height:none;max-width:none;min-width:0;width:100%;grid-column:1/-1;margin-top:4px;box-shadow:none}.heliana-nav-group[open]{grid-column:1/-1}.heliana-nav-group[open]>summary{width:100%}.heliana-folder-grid{grid-template-columns:1fr}.heliana-folder-card a{min-height:100px}}
 @media(max-width:400px){.heliana-nav-inner{grid-template-columns:1fr}.heliana-nav-group[open]{grid-column:auto}}
 @media print{.heliana-site-nav{display:none!important}}
+
+/* Critical: author display:flex must never override the native closed <details> state. */
+.heliana-nav-group:not([open])>.heliana-nav-submenu{display:none!important}
+.heliana-nav-group[open]>.heliana-nav-submenu{display:flex}
+@media(min-width:721px){.heliana-nav-group:last-child>.heliana-nav-submenu{left:auto;right:0}.heliana-nav-submenu{max-width:min(90vw,320px)}}
