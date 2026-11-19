@@ -1,5 +1,5 @@
 // Cache only public static learning assets. No HTTP API, user content or responses.
-const VERSION='heliana-navigation-v13-20261119';
+const VERSION='heliana-nav-fix-v14-20261119';
 const ASSETS=[
  './','./index.html','./style.css','./app.js','./core.js','./curriculum.js',
  './games.html','./games.js','./games.css','./games-core.js',
@@ -12,6 +12,7 @@ const ASSETS=[
  './warscript-junior.html','./warscript-junior.js','./warscript-junior.css','./warscript-junior-core.js',
  './apprendre/','./apprendre/index.html','./communiquer/','./communiquer/index.html',
  './creer/','./creer/index.html','./accompagner/','./accompagner/index.html',
+ './navigation.js',
  './manifest.webmanifest','./heliana-icon.svg','./pwa.js'
 ];
 const WHITELIST=new Set(ASSETS.map(p=>new URL(p,self.registration.scope).pathname));
