@@ -66,6 +66,6 @@ test('closed details submenus stay hidden and opening one closes others',()=>{
  assert.match(css,/\.heliana-nav-group:not\(\[open\]\)>\.heliana-nav-submenu\{display:none!important\}/);
  assert.match(js,/if\(other!==group\)other\.open=false/);
  assert.match(js,/siteNav\.contains\(event\.target\)/);
- assert.match(js,/event\.key==='Escape'/);
+ assert.match(js,/event\.key(?:===|!==)'Escape'/);
  assert.match(readFileSync(new URL('service-worker.js',root),'utf8'),/'\.\/navigation\.js'/);
 });
