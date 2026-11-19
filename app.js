@@ -57,4 +57,12 @@ document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',(
 $('settingsButton').addEventListener('click',()=>{const panel=$('settings');panel.hidden=!panel.hidden;$('settingsButton').setAttribute('aria-expanded',String(!panel.hidden))});
 for(const [id,cls] of [['larger','large'],['contrast','contrast'],['lessMotion','reduced']])$(id).addEventListener('change',event=>document.body.classList.toggle(cls,event.target.checked));
 $('autoVoice').addEventListener('change',event=>{automatic=event.target.checked;if(automatic)speak(instruction.textContent)});
-render();
+// Deep link to the communication workshop without sending activity data to any server.
+const applyWorkshopLink=()=>{
+ if(location.hash==='#atelier-talk'){
+  switchMode('talk');
+  $('lessonTitle').focus();
+ }else if(!location.hash||location.hash==='#ateliers')render();
+};
+window.addEventListener('hashchange',applyWorkshopLink);
+applyWorkshopLink();
