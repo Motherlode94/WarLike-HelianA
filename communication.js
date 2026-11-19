@@ -57,6 +57,15 @@ $('boardCategory').addEventListener('change',e=>{
 });
 $('largeCards').addEventListener('change',e=>document.body.classList.toggle('large-board',e.target.checked));
 $('highContrast').addEventListener('change',e=>document.body.classList.toggle('contrast',e.target.checked));
+$('customPhraseForm').addEventListener('submit',event=>{
+ event.preventDefault();
+ const input=$('customPhrase');
+ const phrase=input.value.replace(/\s+/g,' ').trim();
+ if(!phrase||phrase.length>120){$('phraseFeedback').textContent='Écris une phrase de 1 à 120 caractères.';return}
+ messages=addMessage(messages,phrase);refreshMessage();
+ $('phraseFeedback').textContent='Phrase ajoutée uniquement pour cette session.';
+ input.value='';input.focus();
+});
 $('sayMessage').addEventListener('click',()=>{if(messages.length)speak(messages.join('. '))});
 $('voiceStop').addEventListener('click',()=>{if('speechSynthesis' in window)speechSynthesis.cancel()});
 $('undoMessage').addEventListener('click',()=>{messages.pop();refreshMessage();feedback('Dernier message retiré.')});
