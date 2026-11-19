@@ -2,6 +2,32 @@
 
 Application éducative **autonome** pour apprendre ensemble à lire, écrire, communiquer et mieux se comprendre. Pensée notamment pour les enfants ayant une trisomie 21 **et** les parents, proches, enseignants et accompagnants, sans réduire une personne à son diagnostic.
 
+## Navigation et sous-dossiers — HelianA
+
+Le site possède un **menu principal hiérarchique** sur l’accueil et chaque page pédagogique. Les sous-menus sont réalisés en HTML natif `<details>/<summary>` : ils s’ouvrent au clavier, au tactile et à la souris sans dépendre d’un script d’interface.
+
+Quatre véritables dossiers de navigation, chacun doté de son `index.html`, organisent les outils :
+
+- [`apprendre/`](apprendre/) — ateliers, Learning Studio, 12 mini-jeux, parcours et WarScript Junior.
+- [`communiquer/`](communiquer/) — planche de communication, choix et activités à deux.
+- [`creer/`](creer/) — Educator, WarScript Junior et activités de création.
+- [`accompagner/`](accompagner/) — guide des proches, supports imprimables et parcours accompagnés.
+
+Les modules gardent leurs URL existantes à la racine pour **ne pas casser les liens historiques et les scripts**. Les pages des dossiers proposent une arborescence claire vers ces modules, plutôt que des copies concurrentes. Le Service Worker V12 inclut les dossiers dans le cache de ressources publiques ; aucun compte ou document personnel n’est ajouté.
+
+Tests de structure : `node --test tests/heliana-navigation-folders.test.mjs`. Les essais réels de menu, lecteur d’écran, zoom et navigation tactile restent à réaliser.
+
+## HelianA V12 — application Web installable et activités hors connexion
+
+Une PWA optionnelle (`manifest.webmanifest`, `service-worker.js`, `pwa.js`, `heliana-icon.svg`) prépare à l'avance les **ressources pédagogiques statiques publiques** : accueil, ateliers, parcours, communication, supports accompagnants, Educator, Learning Studio et WarScript Junior.
+
+- Après une première visite en ligne réussie dans un navigateur compatible, les pages installées peuvent être consultées **sans connexion**. L'installation effective et la persistance du cache restent dépendantes du navigateur, de son espace disponible et de ses paramètres.
+- L'intercepteur réseau n'utilise le cache que pour les **requêtes GET du même domaine correspondant exactement à la liste publique**, sans paramètres d'URL ni en-tête d'autorisation.
+- Le code ne collecte, ne synchronise et ne stocke **aucune réponse, fiche saisie, profil ou donnée personnelle** ; les supports personnalisés restent éphémères.
+- Une information d'état du mode hors ligne est annoncée sur l'accueil ; les commandes principales ont une taille tactile minimale sur petit écran et le système respecte les préférences de mouvement réduit.
+
+**Vérification nécessaire** : installer depuis une première visite en ligne, attendre la prise de contrôle du Service Worker, puis passer réellement hors ligne et recharger chaque page. Tester sur mobile et lecteur d'écran. `node --test tests/heliana-v12-offline.test.mjs` contrôle l'inventaire des fichiers mais ne certifie ni l'installation réelle ni la conformité WCAG.
+
 ## WarScript Junior — initiation ludique à la programmation dès 5 ans
 
 La nouvelle page [warscript-junior.html](warscript-junior.html) propose une initiation **visuelle, sans lecture ou écriture obligatoire** : un petit robot à déplacer sur une grille grâce aux commandes **Avancer**, **Tourner à gauche** et **Tourner à droite**. Trois aventures progressives montrent la notion d'instruction, d'ordre des actions et de débogage sans score, chronomètre ni profil.

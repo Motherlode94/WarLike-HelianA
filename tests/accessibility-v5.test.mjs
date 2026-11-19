@@ -37,7 +37,7 @@ test('speech can be stopped independently from each learning surface',()=>{
 test('workshop state and next activity headings remain accessible to keyboard',()=>{
  const home=source('index.html'),app=source('app.js');
  assert.match(home,/data-mode="read" class="selected" aria-pressed="true"/);
- assert.doesNotMatch(home,/aria-current="page"/);
+ assert.doesNotMatch(home.match(/<nav class="tabs"[\s\S]*?<\/nav>/)?.[0]||"",/aria-current="page"/);
  assert.match(app,/setAttribute\('aria-pressed',String\(active\)\)/);
  for(const [html,id] of [['index.html','lessonTitle'],['pathways.html','activityTitle'],['games.html','gameTitle']])
   assert.match(source(html),new RegExp('id="'+id+'" tabindex="-1"'));
