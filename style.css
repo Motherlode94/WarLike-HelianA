@@ -3,3 +3,28 @@
 .offline-status{font-size:.85rem;line-height:1.55;padding:10px 14px;background:#e5f2e8;color:#174d40;border:1px solid #b4d0be;border-radius:10px;margin:0 0 16px}
 @media(max-width:600px){.controls button,.actions button,.outline,header button{min-height:44px}body{overflow-wrap:anywhere}main{min-width:0}.lesson,.information,.welcome{max-width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
+
+/* Navigation HelianA — native keyboard-accessible menus and real folder hubs. */
+.heliana-site-nav{position:relative;z-index:10;background:#f0f8f2;border-bottom:2px solid #bad6c5;color:#174838}
+.heliana-nav-inner{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;max-width:1120px;margin:0 auto;padding:8px 20px}
+.heliana-nav-home,.heliana-nav-group>summary{display:flex;align-items:center;gap:7px;min-height:48px;padding:11px 16px;border-radius:12px;color:#184b40;text-decoration:none;font-size:.95rem;font-weight:780;cursor:pointer;list-style:none}
+.heliana-nav-group>summary::-webkit-details-marker{display:none}
+.heliana-nav-group>summary::after{content:"⌄";margin-left:6px;font-size:1.1em}
+.heliana-nav-group[open]>summary::after{content:"⌃"}
+.heliana-nav-group{position:relative}
+.heliana-nav-home:hover,.heliana-nav-group>summary:hover,.heliana-nav-group[open]>summary{background:#d9eee2}
+.heliana-nav-home[aria-current="page"],.heliana-nav-submenu a[aria-current="page"]{background:#126d61;color:#fff}
+.heliana-nav-submenu{position:absolute;top:100%;left:0;min-width:250px;max-width:min(90vw,340px);max-height:65vh;overflow:auto;background:#fff;border:2px solid #b7d2bf;border-radius:14px;box-shadow:0 10px 30px #183b2b25;padding:8px;display:flex;flex-direction:column;gap:3px}
+.heliana-nav-submenu a{display:block;padding:12px 14px;color:#184b40;text-decoration:none;border-radius:9px;line-height:1.45;font-weight:680}
+.heliana-nav-submenu a:hover{background:#e2f2e8}
+.heliana-nav-submenu a[aria-current="page"]:hover{background:#126d61;color:#fff}
+.heliana-nav-home:focus-visible,.heliana-nav-group>summary:focus-visible,.heliana-nav-submenu a:focus-visible{outline:4px solid #164fa5;outline-offset:2px}
+.heliana-folder-section{margin:26px 0}.heliana-folder-section>h2{margin:0 0 18px}
+.heliana-folder-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;list-style:none;margin:0;padding:0}
+.heliana-folder-card a{display:flex;align-items:start;flex-direction:column;gap:8px;min-height:130px;padding:24px;border:2px solid #b9d7c5;background:#fff;border-radius:19px;text-decoration:none;color:#174838}
+.heliana-folder-card a:hover{background:#e8f6ed;border-color:#126d61}
+.heliana-folder-card a strong{font-size:1.16rem}.heliana-folder-card a span{line-height:1.5}.heliana-folder-card a span:last-child{margin-top:auto;align-self:end;font-weight:900}
+.heliana-folder-note{color:#37584e;font-weight:650;margin-top:24px}
+@media(max-width:720px){.heliana-nav-inner{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:10px 15px}.heliana-nav-home,.heliana-nav-group>summary{min-height:52px;padding:11px 12px}.heliana-nav-group{position:static}.heliana-nav-submenu{position:static;max-height:none;max-width:none;min-width:0;width:100%;grid-column:1/-1;margin-top:4px;box-shadow:none}.heliana-nav-group[open]{grid-column:1/-1}.heliana-nav-group[open]>summary{width:100%}.heliana-folder-grid{grid-template-columns:1fr}.heliana-folder-card a{min-height:100px}}
+@media(max-width:400px){.heliana-nav-inner{grid-template-columns:1fr}.heliana-nav-group[open]{grid-column:auto}}
+@media print{.heliana-site-nav{display:none!important}}

@@ -1,7 +1,7 @@
 name: HelianA accessibility and learning checks
 on:
   pull_request:
-    branches: [main, feat/heliana-v5-voice-aac-accessibility-20261119, feat/heliana-v6-communication-print-20261119, feat/heliana-v7-symbols-duo-qa-20261119, feat/heliana-v11-educator-builder-20261119, feat/heliana-warscript-junior-20261119]
+    branches: [main, feat/heliana-v5-voice-aac-accessibility-20261119, feat/heliana-v6-communication-print-20261119, feat/heliana-v7-symbols-duo-qa-20261119, feat/heliana-v11-educator-builder-20261119, feat/heliana-warscript-junior-20261119, feat/heliana-v12-offline-warjunior-20261119]
   push:
     branches: [main]
 jobs:
