@@ -1,5 +1,5 @@
 // Cache only public static learning assets. No HTTP API, user content or responses.
-const VERSION='heliana-nav-fix-v14-20261119';
+const VERSION='heliana-nav-offline-qa-v15-20261119';
 const ASSETS=[
  './','./index.html','./style.css','./app.js','./core.js','./curriculum.js',
  './games.html','./games.js','./games.css','./games-core.js',
