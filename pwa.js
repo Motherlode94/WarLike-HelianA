@@ -2,7 +2,7 @@
 const offlineStatus=document.getElementById('offlineStatus');
 const explain=message=>{if(offlineStatus)offlineStatus.textContent=message;};
 const base=new URL('./',import.meta.url);
-const CHECKED_FILES=['index.html','navigation.js','communication.html','warscript-junior.html','apprendre/index.html'];
+const CHECKED_FILES=['index.html','style.css','navigation.js','communication.html','warscript-junior.html','learning-studio.html','educator.html','apprendre/index.html','communiquer/index.html','creer/index.html','accompagner/index.html'];
 async function resourcesAvailable(){
  if(!('caches' in window))return false;
  const urls=CHECKED_FILES.map(path=>new URL(path,base).href);
@@ -13,7 +13,7 @@ async function reportStatus(){
  if(!navigator.onLine){
   explain(await resourcesAvailable()?'Hors connexion : les activités installées sont disponibles.':'Hors connexion : certaines activités ne sont peut-être pas installées.');
  }else{
-  explain(await resourcesAvailable()?'Mode hors ligne prêt : les activités publiques ont été installées.':'Mode hors ligne en préparation : une première connexion est nécessaire.');
+  explain(await resourcesAvailable()?'Mode hors ligne prêt : les principales pages pédagogiques sont en cache.':'Mode hors ligne en préparation : une première connexion est nécessaire.');
  }
 }
 if('serviceWorker' in navigator&&window.isSecureContext){
