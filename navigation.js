@@ -1,7 +1,8 @@
-// HelianA navigation: one category at a time, with native details/summary keyboard support.
+// Accessible navigation across HelianA: native details/summary with one open group.
 const siteNav=document.querySelector('.heliana-site-nav');
 if(siteNav){
  const groups=[...siteNav.querySelectorAll('.heliana-nav-group')];
+ const closeAll=()=>{for(const group of groups)group.open=false;};
  for(const group of groups){
   group.addEventListener('toggle',()=>{
    if(!group.open)return;
@@ -9,13 +10,17 @@ if(siteNav){
   });
  }
  document.addEventListener('pointerdown',event=>{
-  if(!siteNav.contains(event.target))for(const group of groups)group.open=false;
+  if(!siteNav.contains(event.target))closeAll();
+ });
+ document.addEventListener('focusin',event=>{
+  if(!siteNav.contains(event.target))closeAll();
  });
  document.addEventListener('keydown',event=>{
-  if(event.key==='Escape'){
-   const open=groups.find(group=>group.open);
-   if(open){open.open=false;open.querySelector('summary')?.focus()}
-  }
+  if(event.key!=='Escape')return;
+  const open=groups.find(group=>group.open);
+  if(!open)return;
+  open.open=false;
+  open.querySelector('summary')?.focus();
+  event.preventDefault();
  });
- // Category links are real destinations, and native details remain keyboard operable.
 }
