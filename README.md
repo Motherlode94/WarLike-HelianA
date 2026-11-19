@@ -2,6 +2,16 @@
 
 Application éducative **autonome** pour apprendre ensemble à lire, écrire, communiquer et mieux se comprendre. Pensée notamment pour les enfants ayant une trisomie 21 **et** les parents, proches, enseignants et accompagnants, sans réduire une personne à son diagnostic.
 
+## WarScript Junior — initiation ludique à la programmation dès 5 ans
+
+La nouvelle page [warscript-junior.html](warscript-junior.html) propose une initiation **visuelle, sans lecture ou écriture obligatoire** : un petit robot à déplacer sur une grille grâce aux commandes **Avancer**, **Tourner à gauche** et **Tourner à droite**. Trois aventures progressives montrent la notion d'instruction, d'ordre des actions et de débogage sans score, chronomètre ni profil.
+
+Les plus curieux peuvent activer « Voir le vrai WarScript » pour découvrir un **exemple de code** `Start() { ... }` avec `Log(...)`, `Move(x,y,z)` et `Rotate(angle)`, formes documentées dans [WarLike Engine](https://github.com/Motherlode94/WarLike-Engine/blob/main/docs/warscript.md). Le simulateur de grille est **un outil pédagogique autonome** : il n'exécute pas WarScript ni un jeu WarLike Engine et ne revendique pas une correspondance parfaite de toutes les transformations 2D/3D.
+
+Les exercices utilisent des boutons natifs accessibles au clavier et au tactile ; les commandes sont traitées par un interpréteur fermé sans `eval`. Aucun texte de l'enfant, progression ou donnée personnelle n'est enregistré.
+
+Contrôles : `node --test tests/warscript-junior.test.mjs`. Des essais avec des enfants et leurs accompagnants sont encore nécessaires pour vérifier le niveau de compréhension et l'accessibilité réelle.
+
 ## HelianA V8 — guide accompagnant et préférences de communication
 
 - **Guide accompagnant imprimable** : la page [facilitator.html](facilitator.html) propose six repères non prescriptifs pour recueillir le consentement, choisir les moyens de communication, laisser du temps, clarifier les messages, respecter les refus et adapter l'activité. Les cases à cocher sont facultatives, conservées en mémoire uniquement durant l'affichage et ne sont jamais enregistrées.
