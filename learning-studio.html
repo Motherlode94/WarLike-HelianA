@@ -1,0 +1,23 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#e9f4ed"><title>Learning Studio — WarLike HelianA</title>
+<link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./heliana-navigation.css"><link rel="stylesheet" href="./learning-studio.css"></head>
+<body><a class="skip" href="#studio">Passer aux activités</a><header><a href="./" class="logo">☀ WarLike <strong>HelianA</strong></a><a href="./" class="outline">← Accueil</a></header>
+<main id="studio">
+<section class="welcome"><div><p class="eyebrow">LEARNING STUDIO · CRÉER ET EXPÉRIMENTER</p><h1>J'apprends à <em>programmer</em></h1><p>Choisis librement un niveau, découvre une consigne, essaie une commande et observe ton personnage. Sans score, sans limite de temps.</p></div><div class="welcome-art" aria-hidden="true">🧩</div></section>
+<nav class="code-menu" aria-label="Parties de Learning Studio"><a href="#chooseLevel">Choisir mon niveau</a><a href="#activity">Les activités</a><a href="#scene">Mon personnage</a><a href="#parents">Pour accompagner</a></nav>
+<section class="information" id="chooseLevel"><h2>Mon niveau</h2><p>Le niveau est un choix : tu peux le changer quand tu veux.</p>
+<fieldset class="level-field"><legend>Choisir un niveau</legend><div id="levelChoices" class="level-choices"></div></fieldset>
+<label class="learning-large"><input id="largeText" type="checkbox"> Agrandir le texte</label></section>
+<section class="lesson" id="activity" aria-labelledby="activityTitle"><p class="eyebrow" id="progress">ACTIVITÉ 1 SUR 3</p>
+<h2 id="activityTitle" tabindex="-1">Activité</h2><p id="prompt"></p>
+<fieldset class="level-field"><legend>Choisis une réponse</legend><div class="learning-choices" id="answers"></div></fieldset>
+<p id="response" role="status" aria-live="polite"></p>
+<div class="controls"><button type="button" id="back" class="outline">← Précédent</button><button type="button" id="replay" class="outline">↻ Réessayer</button><button type="button" id="listen" class="outline">🔊 Écouter</button><button type="button" id="silence" class="outline">■ Arrêter la voix</button><button type="button" id="forward" hidden>Suivant →</button></div></section>
+<section class="information" id="scene"><h2>Mon personnage</h2><p>Une petite simulation illustre les commandes de l'activité. Elle ne fait pas fonctionner du code libre.</p>
+<div class="learning-track" id="track" role="img" aria-label="Personnage sur un chemin de quatre cases"><span id="character" aria-hidden="true">🤖</span></div>
+<p id="speech" role="status" aria-live="polite"></p><button type="button" class="outline" id="startOver">↻ Recommencer le chemin</button></section>
+<details class="information" id="parents"><summary>Pour les accompagnants et enseignants</summary>
+<p>Les niveaux correspondent à une progression d'activités et non à un âge ou à un diagnostic. Une découverte accompagnée dès environ cinq ans est possible selon les besoins et l'intérêt de la personne. Il est toujours permis de demander une pause, une répétition ou de ne pas répondre.</p>
+<p>Ces commandes sont des exemples pédagogiques inspirés de notions de programmation. Elles ne prétendent pas être la syntaxe complète de WarScript. Aucune donnée personnelle, réponse ou progression n'est enregistrée.</p></details>
+</main><footer>WarLike HelianA · Apprendre à son rythme</footer>
+<script type="module" src="./learning-studio.js"></script><script type="module" src="./heliana-navigation.js"></script></body></html>
