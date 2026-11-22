@@ -1,3 +1,4 @@
+import {EXTRA_BANKS,selectExtraQuestion} from './games-extra.js';
 import {GAMES,LEVELS,PAIRS,PHRASES,SCENARIOS,poolSize,matchesWord,phraseIsCorrect,arrangeWords,checkScenario,makeMemoryCards,resolveMemoryTurn,SYLLABLES,LETTERS,DIALOGUES,FEELINGS,NEEDS,routines,stories,categories,rotate,compareOrdered,maskWord} from './games-core.js';
 const $=id=>document.getElementById(id),target=$('gameContent'),feedback=$('gameFeedback');
 let game='association',level='découverte',round=0,done=false,selectedWords=[],picked=[],matched=new Set(),lock=false;
@@ -12,7 +13,13 @@ function reset(){done=false;selectedWords=[];picked=[];matched=new Set();lock=fa
 function renderMenu(){$('gameMenu').replaceChildren();for(const g of GAMES){const b=button('', '',()=>chooseGame(g.id));b.append(element('span','',g.icon),document.createTextNode(g.name));if(g.id===game)b.setAttribute('aria-current','page');$('gameMenu').append(b)}}
 function render(){reset();renderMenu();const selected=GAMES.find(g=>g.id===game);$('gameTitle').textContent=selected.name;$('gamePosition').textContent='JEU '+(GAMES.indexOf(selected)+1)+' / '+GAMES.length;
  if(game==='association')association();if(game==='phrase')sentence();if(game==='situation')situation();if(game==='memory')memory();
+ if(Object.hasOwn(EXTRA_BANKS,game))extraQuizGame();
  const more={syllables:syllableGame,letters:lettersGame,sequence:sequenceGame,dialogue:dialogueGame,feelings:feelingsGame,needs:needsGame,reading:readingGame,sorting:sortingGame};more[game]?.();
+}
+function extraQuizGame(){
+ const item=selectExtraQuestion(game,round,level);
+ if(!item)return;
+ quizGame(item.prompt,item.choices,item.correct,item.explanation);
 }
 function association(){const count=poolSize(level),item=PAIRS[round%PAIRS.length],options=[item,...PAIRS.filter(p=>p.word!==item.word).slice(0,count)].sort((a,b)=>a.word.localeCompare(b.word,'fr'));
  instruction('Regarde le symbole. Choisis le mot qui correspond.');const picture=element('div','game-target');picture.setAttribute('role','img');picture.setAttribute('aria-label',item.word.toLowerCase());picture.append(element('strong','',item.emoji));const choices=element('div','game-options');

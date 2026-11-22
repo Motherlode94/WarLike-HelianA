@@ -1,0 +1,13 @@
+/* Illustrated maintenance/update background — purely informational, no fake loading bar. */
+body{background-color:#f5f8f3;background-image:radial-gradient(circle at 9% 14%,rgba(114,190,151,.14) 0 12%,transparent 32%),radial-gradient(circle at 91% 32%,rgba(94,159,203,.11) 0 12%,transparent 34%),linear-gradient(145deg,#f5f8f3,#edf5f0 56%,#f6f9f5);background-attachment:fixed}
+.heliana-update-banner{max-width:1080px;margin:16px auto 0;padding:15px 20px;display:flex;align-items:center;gap:14px;background:#e4f2ea;color:#163e32;border:2px solid #7aab92;border-radius:18px;line-height:1.45}
+.heliana-update-symbol{font-size:1.7rem;flex:none}
+.heliana-update-banner strong{display:block;font-size:1.04em}
+.heliana-update-banner p{margin:3px 0 0}
+.heliana-update-banner a{color:#125642;text-decoration:underline;font-weight:750}
+.heliana-update-banner a:focus-visible{outline:4px solid #164fa5;outline-offset:3px}
+body.contrast{background:#fff;background-image:none}
+body.contrast .heliana-update-banner{background:#fff;color:#101820;border:3px solid #101820}
+body.contrast .heliana-update-banner a{color:#101820}
+@media(max-width:730px){.heliana-update-banner{margin:12px 15px 0;padding:13px;align-items:flex-start}}
+@media(prefers-reduced-motion:reduce){body{background-attachment:scroll}}
