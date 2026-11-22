@@ -55,3 +55,7 @@ Vocabulaire CAA personnalisable avec consentement, textes et pictogrammes valid�
 ## Découvrir le code — activités WarScript guidées
 
 La page `coding.html` propose trois activités accessibles de logique informatique : avancer, tourner et afficher « Bonjour ». Ces commandes pédagogiques sont **simplifiées** et **ne constituent pas un interpréteur WarScript** : le simulateur utilise des actions prédéfinies, sans `eval`, sans saisie/exécution libre et sans stockage. Compatible clavier, avec retour vocal facultatif et possibilité de réessayer sans score ni chronomètre. L'initiation peut être accompagnée dès environ 5 ans selon l'intérêt et les capacités de l'enfant. Test : `node --test tests/coding-introduction.test.mjs`.
+
+## V15 — Learning Studio
+
+`learning-studio.html` ajoute **9 activités** réparties en **3 niveaux librement sélectionnables** : Découverte, Pratique et Défi. Les commandes simplifiées permettent de travailler les déplacements, les séquences, les répétitions et les conditions. La simulation est déterministe, sans `eval` ni interpréteur WarScript complet. Une lecture vocale facultative, un grossissement de texte et des options de répétition accompagnent chaque activité ; aucun résultat ou profil n'est enregistré. Tests : `node --test tests/learning-studio.test.mjs`.
