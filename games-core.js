@@ -1,3 +1,4 @@
+import {EXTRA_GAMES} from './games-extra.js';
 import {vocabulary,sentences,interactions,routines,stories,categories,rotate,compareOrdered,maskWord} from './curriculum.js';
 // Mini-jeux HelianA : données statiques, sans profilage ni classement.
 export const LEVELS=Object.freeze(['découverte','pratique','défi']);
@@ -13,7 +14,8 @@ export const GAMES=Object.freeze([
  {id:'feelings',name:'Mes ressentis',icon:'💛',goal:'Choisir des mots pour dire ce que l’on ressent'},
  {id:'needs',name:'Exprimer un besoin',icon:'🙋',goal:'Exprimer ses souhaits avec des phrases'},
  {id:'reading',name:'Petites histoires',icon:'📚',goal:'Lire et comprendre un texte'},
- {id:'sorting',name:'Trouve la catégorie',icon:'🌿',goal:'Regrouper les objets d’une même catégorie'}
+ {id:'sorting',name:'Trouve la catégorie',icon:'🌿',goal:'Regrouper les objets d’une même catégorie'},
+ ...EXTRA_GAMES
 ]);
 export const PAIRS=[
  {emoji:'💧',word:'EAU'}, {emoji:'🍎',word:'POMME'}, {emoji:'🏡',word:'MAISON'},
