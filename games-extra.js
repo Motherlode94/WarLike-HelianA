@@ -54,7 +54,7 @@ export const EXTRA_BANKS=Object.freeze({
  ]
 });
 export function selectExtraQuestion(id,round,level){
- const bank=EXTRA_BANKS[id];
+ const bank=Object.hasOwn(EXTRA_BANKS,id)?EXTRA_BANKS[id]:null;
  if(!bank||!Number.isInteger(round)||round<0)return null;
  const item=bank[round%bank.length];
  // Découverte: two choices, Pratique and Défi: three. Always retain correct answer.
