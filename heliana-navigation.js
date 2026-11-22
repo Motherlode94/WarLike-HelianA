@@ -3,7 +3,7 @@
 export const helianaSections=Object.freeze([
  {label:'Accueil',href:'./',items:[{label:'Les ateliers',href:'./#ateliers'},{label:'Réglages',href:'./#settings'}]},
  {label:'Apprendre',href:'./pathways.html',items:[{label:'Parcours pédagogiques',href:'./pathways.html'},{label:'Je lis',href:'./#ateliers'},{label:'J’écris',href:'./#ateliers'}]},
- {label:'Jouer',href:'./games.html',items:[{label:'Les 12 mini-jeux',href:'./games.html'},{label:'Activités guidées',href:'./pathways.html'}]},
+ {label:'Jouer',href:'./games.html',items:[{label:'Les 20 mini-jeux',href:'./games.html'},{label:'Activités guidées',href:'./pathways.html'}]},
  {label:'Créer',href:'./coding.html',items:[{label:'Découvrir WarScript',href:'./coding.html'},{label:'Mon personnage',href:'./coding.html#preview'}]},
  {label:'Accompagner',href:'./#familles',items:[{label:'Familles et professionnels',href:'./#familles'},{label:'Conseils pour les parcours',href:'./pathways.html#pathwayMain'}]}
 ]);
