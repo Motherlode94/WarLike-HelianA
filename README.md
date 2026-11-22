@@ -51,3 +51,7 @@ Application statique HTML/CSS/JS, déployable sur Cloudflare Pages avec le répe
 
 ## Évolution envisagée
 Vocabulaire CAA personnalisable avec consentement, textes et pictogrammes validés, consignes visuelles configurables, activités multimodales, assistance hors ligne, traduction, version parent/enseignant et évaluation d'utilisabilité co-construite. Aucun profil enfant ni stockage cloud sans conception spécifique de la confidentialité et du consentement.
+
+## Découvrir le code — activités WarScript guidées
+
+La page `coding.html` propose trois activités accessibles de logique informatique : avancer, tourner et afficher « Bonjour ». Ces commandes pédagogiques sont **simplifiées** et **ne constituent pas un interpréteur WarScript** : le simulateur utilise des actions prédéfinies, sans `eval`, sans saisie/exécution libre et sans stockage. Compatible clavier, avec retour vocal facultatif et possibilité de réessayer sans score ni chronomètre. L'initiation peut être accompagnée dès environ 5 ans selon l'intérêt et les capacités de l'enfant. Test : `node --test tests/coding-introduction.test.mjs`.
