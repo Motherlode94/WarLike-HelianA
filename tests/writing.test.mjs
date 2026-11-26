@@ -1,0 +1,1 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {MODELS,stepModel,clampPoint} from '../writing-core.js';test('alphabet and numbers',()=>{assert.equal(MODELS.length,41);assert.equal(stepModel(0,-1),40);assert.equal(stepModel(40,1),0);});test('bounded canvas coordinates',()=>assert.deepEqual(clampPoint(-1,500),{x:0,y:440}));
