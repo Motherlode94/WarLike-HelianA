@@ -62,3 +62,6 @@ La page `games.html` ajoute Les couleurs, Les nombres, Je compte, Les formes, Le
 
 ## V17 — Learning Studio recovery
 Nine guided programming activities recovered from the V15 draft, with explicit skip, per-activity scene reset, optional contrast and text sizing. No scores or saved answers. The simulation remains pedagogical, not a WarScript interpreter. Browser and user validation remain required.
+
+## V18 — Independent home spaces
+Home, workshops, accessibility settings and family guidance use distinct hash routes, preserving the existing workshop controls and separate games/pathways/coding pages. No personal data storage added. Browser validation required.

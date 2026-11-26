@@ -1,8 +1,8 @@
 // Shared, accessible, progressively enhanced site navigation.
 // Navigation uses native links and <details> so it works without script after mounting.
 export const helianaSections=Object.freeze([
- {label:'Accueil',href:'./',items:[{label:'Les ateliers',href:'./#ateliers'},{label:'Réglages',href:'./#settings'}]},
- {label:'Apprendre',href:'./pathways.html',items:[{label:'Parcours pédagogiques',href:'./pathways.html'},{label:'Je lis',href:'./#ateliers'},{label:'J’écris',href:'./#ateliers'}]},
+ {label:'Accueil',href:'./',items:[{label:'Accueil',href:'./#home'},{label:'Les ateliers',href:'./#ateliers'},{label:'Réglages',href:'./#settings'}]},
+ {label:'Apprendre',href:'./pathways.html',items:[{label:'Parcours pédagogiques',href:'./pathways.html'},{label:'Je lis',href:'./#read'},{label:'J’écris',href:'./#write'},{label:'Je m’exprime',href:'./#talk'},{label:'On se comprend',href:'./#understand'}]},
  {label:'Jouer',href:'./games.html',items:[{label:'Les 20 mini-jeux',href:'./games.html'},{label:'Activités guidées',href:'./pathways.html'}]},
  {label:'Créer',href:'./coding.html',items:[{label:'Découvrir WarScript',href:'./coding.html'},{label:'Learning Studio',href:'./learning-studio.html'},{label:'Mon personnage',href:'./coding.html#preview'}]},
  {label:'Accompagner',href:'./#familles',items:[{label:'Familles et professionnels',href:'./#familles'},{label:'Conseils pour les parcours',href:'./pathways.html#pathwayMain'}]}

@@ -8,7 +8,7 @@ const el=(tag,className,text)=>{const item=document.createElement(tag);if(classN
 const button=(text,cls,fn)=>{const b=el('button',cls,text);b.type='button';b.addEventListener('click',fn);return b};
 function respond(message,read=false){feedback.textContent=message;if(read||automatic)speak(message)}
 function complete(){finished=true;next.hidden=false;respond('Bravo ! Tu peux passer à la suite.',true)}
-function switchMode(value){if(!titles[value])return;mode=value;index=0;finished=false;phrase=[];for(const b of document.querySelectorAll('[data-mode]')){const active=b.dataset.mode===mode;b.classList.toggle('selected',active);b.setAttribute('aria-pressed',String(active))}render()}
+export function switchMode(value){if(!titles[value])return;mode=value;index=0;finished=false;phrase=[];for(const b of document.querySelectorAll('[data-mode]')){const active=b.dataset.mode===mode;b.classList.toggle('selected',active);b.setAttribute('aria-pressed',String(active))}render()}
 function render(){exercise.replaceChildren();feedback.textContent='';finished=false;next.hidden=true;$('restart').hidden=mode==='talk';$('lessonTitle').textContent=titles[mode];$('step').textContent=mode==='talk'?'MA COMMUNICATION':'ACTIVITÉ '+(index+1);
  if(mode==='read')readLesson();if(mode==='write')writeLesson();if(mode==='talk')talkLesson();if(mode==='understand')understandLesson();
  if(automatic)speak(instruction.textContent);
@@ -54,7 +54,7 @@ $('restart').addEventListener('click',()=>{index=0;render()});$('repeat').addEve
 $('stopVoice').addEventListener('click',()=>{if('speechSynthesis' in window)speechSynthesis.cancel();});
 $('welcomeVoice').addEventListener('click',()=>speak('Bienvenue dans WarLike HelianA. Ici, on apprend à lire, à écrire, à s’exprimer et à mieux se comprendre.'));
 document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{switchMode(b.dataset.mode);$('lessonTitle').focus();}));
-$('settingsButton').addEventListener('click',()=>{const panel=$('settings');panel.hidden=!panel.hidden;$('settingsButton').setAttribute('aria-expanded',String(!panel.hidden))});
+$('settingsButton').addEventListener('click',()=>{location.hash=location.hash==='#settings'?'#home':'#settings';});
 for(const [id,cls] of [['larger','large'],['contrast','contrast'],['lessMotion','reduced']])$(id).addEventListener('change',event=>document.body.classList.toggle(cls,event.target.checked));
 $('autoVoice').addEventListener('change',event=>{automatic=event.target.checked;if(automatic)speak(instruction.textContent)});
 render();
