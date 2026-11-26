@@ -1,0 +1,1 @@
+export function resolveSpace(hash){const route=String(hash||'').replace(/^#/,'');if(['read','write','talk','understand'].includes(route))return {space:'workshop',mode:route};if(route==='ateliers')return {space:'workshop',mode:null};if(route==='settings')return {space:'settings',mode:null};if(route==='familles')return {space:'families',mode:null};return {space:'home',mode:null};}
