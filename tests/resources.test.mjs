@@ -1,0 +1,1 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {SHEETS,sheetAt} from '../resources-core.js';test('six distinct printable resources',()=>{assert.equal(SHEETS.length,6);assert.equal(new Set(SHEETS.map(s=>s.title)).size,6);for(const [i,s] of SHEETS.entries()){assert.equal(sheetAt(i),s);assert.ok(s.items.length>=3);}assert.equal(sheetAt(-1),null);});
