@@ -2,7 +2,7 @@
 // Navigation uses native links and <details> so it works without script after mounting.
 export const helianaSections=Object.freeze([
  {label:'Accueil',href:'./',items:[{label:'Les ateliers',href:'./#ateliers'},{label:'Réglages',href:'./#settings'}]},
- {label:'Apprendre',href:'./pathways.html',items:[{label:'Parcours pédagogiques',href:'./pathways.html'},{label:'Je lis',href:'./#ateliers'},{label:'J’écris',href:'./#ateliers'}]},
+ {label:'Apprendre',href:'./pathways.html',items:[{label:'Parcours pédagogiques',href:'./pathways.html'},{label:'Lire les syllabes',href:'./reading.html'},{label:'Je lis',href:'./#ateliers'},{label:'J’écris',href:'./#ateliers'}]},
  {label:'Jouer',href:'./games.html',items:[{label:'Les 20 mini-jeux',href:'./games.html'},{label:'Activités guidées',href:'./pathways.html'}]},
  {label:'Créer',href:'./coding.html',items:[{label:'Découvrir WarScript',href:'./coding.html'},{label:'Learning Studio',href:'./learning-studio.html'},{label:'Mon personnage',href:'./coding.html#preview'}]},
  {label:'Accompagner',href:'./#familles',items:[{label:'Familles et professionnels',href:'./#familles'},{label:'Conseils pour les parcours',href:'./pathways.html#pathwayMain'}]}
@@ -11,7 +11,7 @@ export function currentSection(pathname){
  const path=String(pathname||'/').split('/').pop()||'index.html';
  if(path==='coding.html'||path==='learning-studio.html')return 'Créer';
  if(path==='games.html')return 'Jouer';
- if(path==='pathways.html')return 'Apprendre';
+ if(path==='pathways.html'||path==='reading.html')return 'Apprendre';
  return 'Accueil';
 }
 export function buildNavigation(doc,pathname){
