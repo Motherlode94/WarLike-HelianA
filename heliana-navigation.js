@@ -6,10 +6,11 @@ export const helianaSections=Object.freeze([
  {label:'Jouer',href:'./games.html',items:[{label:'Les 20 mini-jeux',href:'./games.html'},{label:'Activités guidées',href:'./pathways.html'},{label:'Mathématiques visuelles',href:'./maths.html'}]},
  {label:'Créer',href:'./coding.html',items:[{label:'Découvrir WarScript',href:'./coding.html'},{label:'Learning Studio',href:'./learning-studio.html'},{label:'Mon personnage',href:'./coding.html#preview'},{label:'Dessin et alphabet',href:'./writing.html'}]},
  {label:'Accompagner',href:'./#familles',items:[{label:'Familles et professionnels',href:'./#familles'},{label:'Espace accompagnants',href:'./educator.html'},{label:'Conseils pour les parcours',href:'./pathways.html#pathwayMain'},{label:'Histoires illustrées',href:'./stories.html'}]}
-]);
+=======
+
 export function currentSection(pathname){
  const path=String(pathname||'/').split('/').pop()||'index.html';
- if(path==='coding.html'||path==='learning-studio.html'||path==='writing.html')return 'Créer';
+ if(path==='coding.html'||path==='learning-studio.html'||path==='writing.html'||path==='creativity.html')return 'Créer';
  if(path==='games.html'||path==='maths.html')return 'Jouer';
  if(path==='pathways.html'||path==='reading.html')return 'Apprendre';
  if(path==='stories.html'||path==='educator.html')return 'Accompagner';
