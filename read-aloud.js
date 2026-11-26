@@ -1,4 +1,4 @@
-import {normalizeText,speechRate,localFrenchVoices,collectVisibleText} from './read-aloud-core.js';
+import {normalizeText,speechRate,localFrenchVoices,collectVisibleText,collectPageText} from './read-aloud-core.js';
 import {layoutFor} from './read-aloud-layout.js';
 const config=document.querySelector('script[data-read-targets]');
 const selectors=(config?.dataset.readTargets||'').split('|').filter(Boolean);
@@ -10,10 +10,10 @@ if(main&&host&&selectors.length){
  const controls=document.createElement('div');controls.className='read-aloud-controls';panel.append(controls);
  const statusNode=document.createElement('p');statusNode.setAttribute('role','status');statusNode.setAttribute('aria-live','polite');panel.append(statusNode);
  function control(id,label,action){const existing=id&&document.getElementById(id);const button=existing||document.createElement('button');button.type='button';button.classList.add('read-aloud-button');button.textContent=label;button.addEventListener('click',event=>{event.preventDefault();event.stopImmediatePropagation();action();},{capture:true});controls.append(button);return button;}
- let active=null,activeSelectors=selectors;
- function status(text){if(statusNode.textContent!==text)statusNode.textContent=text;}
+ let active=null,activeSelectors=selectors,activePage=false;
+ function status(text){const target=activePage?pageStatus:statusNode;const other=activePage?statusNode:pageStatus;if(target.textContent!==text)target.textContent=text;if(other.textContent)other.textContent='';}
  function stop(announce=false){const wasActive=!!active||!!synth?.speaking;active=null;synth?.cancel();if(announce&&wasActive)status('Lecture arrêtée.');else status('');}
- function play(which){if(!synth||!window.SpeechSynthesisUtterance){status('Lecture vocale indisponible sur cet appareil.');return;}const text=collectVisibleText(document,which);if(!text){status('Aucun texte disponible à écouter.');return;}const voice=localFrenchVoices(synth.getVoices())[0];if(!voice){status('Aucune voix française locale disponible.');return;}stop();const u=new SpeechSynthesisUtterance(normalizeText(text));u.voice=voice;u.lang=voice.lang;u.rate=speechRate(rate.value);active=u;activeSelectors=which;u.onend=()=>{if(active===u){active=null;status('');}};u.onerror=()=>{if(active===u){active=null;status('Lecture indisponible ou interrompue.');}};try{synth.speak(u);status('Lecture en cours.');}catch{active=null;status('Lecture indisponible.');}}
+ function play(which,page=false){if(!synth||!window.SpeechSynthesisUtterance){status('Lecture vocale indisponible sur cet appareil.');return;}activePage=page;const text=page?collectPageText(main):collectVisibleText(document,which);if(!text){status('Aucun texte disponible à écouter.');return;}const voice=localFrenchVoices(synth.getVoices())[0];if(!voice){status('Aucune voix française locale disponible.');return;}stop();const u=new SpeechSynthesisUtterance(normalizeText(text));u.voice=voice;u.lang=voice.lang;u.rate=speechRate(rate.value);active=u;activeSelectors=which;activePage=page;u.onend=()=>{if(active===u){active=null;status('');}};u.onerror=()=>{if(active===u){active=null;status('Lecture indisponible ou interrompue.');}};try{synth.speak(u);status('Lecture en cours.');}catch{active=null;status('Lecture indisponible.');}}
  const read=control(layout.read,'🔊 Écouter la question',()=>play(selectors));read.dataset.speech='play';
  const answers=control(null,'🔊 Écouter les réponses',()=>play(answerSelectors));answers.dataset.speech='answers';
  const stopButton=control(layout.stop,'■ Arrêter',()=>stop(true));stopButton.dataset.speech='stop';
@@ -22,6 +22,11 @@ if(main&&host&&selectors.length){
  const pause=document.createElement('button');pause.type='button';pause.textContent='Pause';pause.onclick=()=>{if(active&&synth.speaking){synth.pause();status('Lecture en pause.');}};extra.append(pause);
  const resume=document.createElement('button');resume.type='button';resume.textContent='Reprendre';resume.onclick=()=>{if(active&&synth.paused){synth.resume();status('Lecture reprise.');}};extra.append(resume);
  const label=document.createElement('label');label.textContent='Vitesse ';const rate=document.createElement('select');for(const [value,text] of [['.65','Lente'],['.85','Normale'],['1.05','Rapide']])rate.add(new Option(text,value));rate.value='.85';label.append(rate);extra.append(label);controls.append(details);
+ const pageToolbar=document.createElement('div');pageToolbar.className='read-aloud-page';pageToolbar.setAttribute('role','group');pageToolbar.setAttribute('aria-label','Lecture de la page entière');
+ const pageRead=document.createElement('button');pageRead.type='button';pageRead.textContent='🔊 Lire toute la page';pageRead.onclick=()=>play([],true);
+ const pageStop=document.createElement('button');pageStop.type='button';pageStop.textContent='■ Arrêter';pageStop.onclick=()=>stop(true);
+ const pageStatus=document.createElement('p');pageStatus.setAttribute('role','status');pageStatus.setAttribute('aria-live','polite');
+ pageToolbar.append(pageRead,pageStop,pageStatus);main.before(pageToolbar);
  const question=host.querySelector(layout.question)||document.querySelector(layout.question);
  if(question&&host.contains(question))question.after(panel);else host.prepend(panel);
  // Home and family guidance use the same toolbar in their own visible section.
@@ -30,7 +35,7 @@ if(main&&host&&selectors.length){
   const objective=!!collectVisibleText(document,answerSelectors);read.textContent=objective?'🔊 Écouter la question':'🔊 Écouter le texte';
  }
  placement();window.addEventListener('hashchange',()=>{stop();placement();});window.addEventListener('pagehide',()=>stop());document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
- const observer=new MutationObserver(()=>{if(active&&collectVisibleText(document,activeSelectors)!==active.text)stop();const shouldHide=!answerSelectors.length||!collectVisibleText(document,answerSelectors);if(answers.hidden!==shouldHide)answers.hidden=shouldHide;const label=shouldHide?'🔊 Écouter le texte':'🔊 Écouter la question';if(read.textContent!==label)read.textContent=label;});
+ const observer=new MutationObserver(()=>{if(active&&(activePage?collectPageText(main):collectVisibleText(document,activeSelectors))!==active.text)stop();const shouldHide=!answerSelectors.length||!collectVisibleText(document,answerSelectors);if(answers.hidden!==shouldHide)answers.hidden=shouldHide;const label=shouldHide?'🔊 Écouter le texte':'🔊 Écouter la question';if(read.textContent!==label)read.textContent=label;});
  observer.observe(main,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['hidden','open']});
- if(!synth){for(const button of panel.querySelectorAll('button'))button.disabled=true;status('Lecture vocale indisponible. Le texte reste accessible.');}
+ if(!synth){pageRead.disabled=true;pageStop.disabled=true;for(const button of panel.querySelectorAll('button'))button.disabled=true;status('Lecture vocale indisponible. Le texte reste accessible.');}
 }

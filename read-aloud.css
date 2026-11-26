@@ -8,3 +8,5 @@
 .read-aloud-extra{padding:8px 0}.read-aloud p{margin:6px 0;font-size:.9em}.read-aloud p:empty{display:none}
 @media(max-width:600px){.read-aloud-controls button{flex:1 1 auto}.read-aloud-options{flex-basis:100%}}
 @media print{.read-aloud{display:none!important}}
+
+.read-aloud-page{max-width:1080px;margin:12px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}.read-aloud-page button{font:inherit;font-size:.9em;min-height:44px;padding:8px 12px;border:2px solid #9bbfac;border-radius:10px;background:#fff;color:#184d41;font-weight:650}.read-aloud-page p{margin:0;font-size:.9em}.read-aloud-page p:empty{display:none}@media print{.read-aloud-page{display:none!important}}
