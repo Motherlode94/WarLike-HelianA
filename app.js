@@ -1,3 +1,4 @@
+import {markAnswer} from './answer-feedback.js';
 import {reads,writes,symbols,situations,isReadingCorrect,isWritingCorrect,evaluateSituation,appendSymbol} from './core.js';
 const $=id=>document.getElementById(id);
 let mode='read',index=0,finished=false,phrase=[],automatic=false;
@@ -15,7 +16,7 @@ function render(){exercise.replaceChildren();feedback.textContent='';finished=fa
 }
 function readLesson(){const item=reads[index%reads.length];instruction.textContent='Regarde le dessin. Choisis le bon mot.';
  const img=el('div','picture',item.emoji);img.setAttribute('role','img');img.setAttribute('aria-label',item.word.toLocaleLowerCase('fr'));exercise.append(img);
- const choices=el('div','choices');for(const word of item.choices){const btn=button(word,'choice',()=>{if(finished)return;if(isReadingCorrect(item,word)){for(const child of choices.children)child.disabled=true;complete()}else respond('Tu peux essayer encore. Prends ton temps.');});choices.append(btn)}exercise.append(choices,button('🔊 Écouter le mot','outline',()=>speak(item.word.toLocaleLowerCase('fr'))));
+ const choices=el('div','choices');for(const word of item.choices){const btn=button(word,'choice',()=>{if(finished)return;if(markAnswer(btn,isReadingCorrect(item,word))){for(const child of choices.children)child.disabled=true;complete()}else respond('Tu peux essayer encore. Prends ton temps.');});choices.append(btn)}exercise.append(choices,button('🔊 Écouter le mot','outline',()=>speak(item.word.toLocaleLowerCase('fr'))));
 }
 function writeLesson(){const item=writes[index%writes.length];instruction.textContent='Regarde le dessin et écris le mot en t’aidant du modèle.';
  const image=el('div','picture',item.emoji),model=el('p','model',item.word),label=el('label','center','Écris le mot ici :'),input=el('input','word-input');label.htmlFor='wordAnswer';input.id='wordAnswer';input.type='text';input.maxLength=36;input.autocapitalize='characters';input.autocomplete='off';input.spellcheck=false;
@@ -46,7 +47,7 @@ function talkLesson(){instruction.textContent='Choisis des images pour dire ce q
 }
 function understandLesson(){const situation=situations[index%situations.length];instruction.textContent='Lis la situation. Choisis une réponse respectueuse et adaptée.';
  const box=el('div','scenario'),title=el('h3','',situation.title),description=el('p','',situation.context),choices=el('div','scenarios');box.append(title,description);exercise.append(box);
- for(let i=0;i<situation.options.length;i++){const option=situation.options[i],btn=button(option,'answer',()=>{if(finished)return;if(evaluateSituation(situation,i)){for(const child of choices.children)child.disabled=true;finished=true;next.hidden=false;respond('Bonne approche. '+situation.reason)}else respond('Essayons une autre réponse. Le but est de laisser la personne s’exprimer et choisir.');});choices.append(btn)}
+ for(let i=0;i<situation.options.length;i++){const option=situation.options[i],btn=button(option,'answer',()=>{if(finished)return;if(markAnswer(btn,evaluateSituation(situation,i))){for(const child of choices.children)child.disabled=true;finished=true;next.hidden=false;respond('Bonne approche. '+situation.reason)}else respond('Essayons une autre réponse. Le but est de laisser la personne s’exprimer et choisir.');});choices.append(btn)}
  exercise.append(choices,button('🔊 Écouter la situation','outline',()=>speak(situation.context)));
 }
 $('next').addEventListener('click',()=>{index++;const limit=mode==='read'?reads.length:mode==='write'?writes.length:situations.length;if(index>=limit)index=0;render()});

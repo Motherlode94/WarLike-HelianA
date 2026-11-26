@@ -1,3 +1,4 @@
+import {markAnswer} from './answer-feedback.js';
 import {PATHWAYS,DUO_PROMPTS,DISPLAY_DEFAULTS,validateDisplay,pathwayById,pathwayStep,pathwayLength,stepMaterial,advance,sequenceMatches} from './pathways-core.js';
 import {PAIRS,SCENARIOS,arrangeWords} from './games-core.js';
 const $=id=>document.getElementById(id);
@@ -85,7 +86,7 @@ function question(prompt,choices,right,success){
  choices.forEach((answer,i)=>{
   const b=button(answer,()=>{
    if(completed)return;
-   if(i===right){for(const item of options.children)item.disabled=true;finish(success||'Tu as trouvé une réponse possible.');}
+   if(markAnswer(b,i===right)){for(const item of options.children)item.disabled=true;finish(success||'Tu as trouvé une réponse possible.');}
    else notice('Tu peux réessayer ou demander de l’aide. Prends ton temps.');
   });options.append(b);
  });body.append(options);
@@ -98,11 +99,11 @@ function picture(item){
  const others=PAIRS.filter(p=>p.word!==item.word).slice(variation%3,variation%3+3).map(p=>p.word);
  const answers=[item.word,...others].sort((a,b)=>a.localeCompare(b,'fr'));
  const options=make('div',undefined,'step-choices');
- for(const word of answers)options.append(button(word,()=>{
+ for(const word of answers){const answerButton=button(word,()=>{
   if(completed)return;
-  if(word===item.word){for(const b of options.children)b.disabled=true;finish('C’est bien le mot '+word.toLowerCase()+'.');}
+  if(markAnswer(answerButton,word===item.word)){for(const b of options.children)b.disabled=true;finish('C’est bien le mot '+word.toLowerCase()+'.');}
   else notice('Essaie encore, ou écoute le mot si tu préfères.');
- }));
+ });options.append(answerButton);}
  body.append(options);
 }
 function ordered(prompt,tokens,expected){
