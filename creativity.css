@@ -1,0 +1,1 @@
+.flower{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:420px;margin:auto}.flower button{border-radius:50%;min-height:90px}.lesson [hidden]{display:none!important}
