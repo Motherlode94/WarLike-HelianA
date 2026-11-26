@@ -1,3 +1,4 @@
+import {markAnswer} from './answer-feedback.js';
 import {EXTRA_BANKS,selectExtraQuestion} from './games-extra.js';
 import {GAMES,LEVELS,PAIRS,PHRASES,SCENARIOS,poolSize,matchesWord,phraseIsCorrect,arrangeWords,checkScenario,makeMemoryCards,resolveMemoryTurn,SYLLABLES,LETTERS,DIALOGUES,FEELINGS,NEEDS,routines,stories,categories,rotate,compareOrdered,maskWord} from './games-core.js';
 const $=id=>document.getElementById(id),target=$('gameContent'),feedback=$('gameFeedback');
@@ -23,7 +24,7 @@ function extraQuizGame(){
 }
 function association(){const count=poolSize(level),item=PAIRS[round%PAIRS.length],options=[item,...PAIRS.filter(p=>p.word!==item.word).slice(0,count)].sort((a,b)=>a.word.localeCompare(b.word,'fr'));
  instruction('Regarde le symbole. Choisis le mot qui correspond.');const picture=element('div','game-target');picture.setAttribute('role','img');picture.setAttribute('aria-label',item.word.toLowerCase());picture.append(element('strong','',item.emoji));const choices=element('div','game-options');
- for(const p of options){const b=button(p.word,'',()=>{if(done)return;if(matchesWord(p.word,item.word)){for(const opt of choices.children)opt.disabled=true;finish('Bien joué ! Tu as trouvé le bon mot.')}else notify('Tu peux réessayer, sans te presser.')});choices.append(b)}
+ for(const p of options){const b=button(p.word,'',()=>{if(done)return;if(markAnswer(b,matchesWord(p.word,item.word))){for(const opt of choices.children)opt.disabled=true;finish('Bien joué ! Tu as trouvé le bon mot.')}else notify('Tu peux réessayer, sans te presser.')});choices.append(b)}
  target.append(picture,choices);
 }
 function sentence(){const item=PHRASES[round%PHRASES.length],tokens=arrangeWords(item.words);instruction('Construis cette phrase : '+item.prompt+'. Appuie sur les mots dans le bon ordre.');
@@ -32,7 +33,7 @@ function sentence(){const item=PHRASES[round%PHRASES.length],tokens=arrangeWords
  tools.append(button('↶ Retirer un mot','',()=>{if(!done){selectedWords.pop();draw()}}),button('Vérifier','',()=>{if(done)return;if(phraseIsCorrect(selectedWords.map(t=>t.word),item.words))finish('Bien joué ! Ta phrase est complète.');else notify('Essaie encore. Tu peux retirer un mot.')}),button('🔊 Écouter le modèle','',()=>say(item.words.join(' '))));target.append(board,bank,tools);draw();
 }
 function situation(){const item=SCENARIOS[round%SCENARIOS.length];instruction('Lis la situation et choisis une manière respectueuse de réagir.');target.append(element('div','scenario',item.prompt));const choices=element('div','game-options scenario-choices');
- for(let i=0;i<item.choices.length;i++){const b=button(item.choices[i],'',()=>{if(done)return;if(checkScenario(item,i)){for(const other of choices.children)other.disabled=true;finish('Bonne réponse. '+item.explain)}else notify('Regardons une autre possibilité : comment respecter le choix de la personne ?')});choices.append(b)}
+ for(let i=0;i<item.choices.length;i++){const b=button(item.choices[i],'',()=>{if(done)return;if(markAnswer(b,checkScenario(item,i))){for(const other of choices.children)other.disabled=true;finish('Bonne réponse. '+item.explain)}else notify('Regardons une autre possibilité : comment respecter le choix de la personne ?')});choices.append(b)}
  target.append(choices);
 }
 function memory(){const cards=makeMemoryCards(PAIRS,poolSize(level));instruction('Retourne deux cartes pour retrouver les mêmes images. Aucun chronomètre !');const grid=element('div','memory-grid'),buttons=new Map();
@@ -69,7 +70,7 @@ function lettersGame(){
  target.append(element('div','game-target',item.emoji+' '+maskWord(item.word,item.at)));
  const grid=element('div','game-options');
  for(const current of rotate(letters,round+1)){
-  const b=button(current,'',()=>{if(done)return;if(current===letter){for(const other of grid.children)other.disabled=true;finish('Tu as complété le mot '+item.word+'.')}else notify('Essaie une autre lettre.');});grid.append(b);
+  const b=button(current,'',()=>{if(done)return;if(markAnswer(b,current===letter)){for(const other of grid.children)other.disabled=true;finish('Tu as complété le mot '+item.word+'.')}else notify('Essaie une autre lettre.');});grid.append(b);
  }target.append(grid);
 }
 function sequenceGame(){
@@ -80,7 +81,7 @@ function quizGame(prompt,options,correct,explanation){
  instruction(prompt);
  const grid=element('div','game-options scenario-choices');
  for(let i=0;i<options.length;i++){
-  const b=button(options[i],'',()=>{if(done)return;if(i===correct){for(const other of grid.children)other.disabled=true;finish(explanation||'Bonne réponse !')}else notify('Essaie encore. Tu peux prendre ton temps.')});
+  const b=button(options[i],'',()=>{if(done)return;if(markAnswer(b,i===correct)){for(const other of grid.children)other.disabled=true;finish(explanation||'Bonne réponse !')}else notify('Essaie encore. Tu peux prendre ton temps.')});
   grid.append(b);
  }target.append(grid);
 }
@@ -122,7 +123,7 @@ function sortingGame(){
  instruction('Choisis ce qui appartient à la catégorie : '+item.title+'.');
  const grid=element('div','game-options');
  for(const choice of rotate([good,wrong],round)){
-  const b=button(choice,'',()=>{if(done)return;if(choice===good){for(const other of grid.children)other.disabled=true;finish('Bien vu ! '+good+' appartient à la catégorie '+item.title+'.')}else notify('Ce n’est pas dans cette catégorie. Essaie l’autre choix.');});grid.append(b);
+  const b=button(choice,'',()=>{if(done)return;if(markAnswer(b,choice===good)){for(const other of grid.children)other.disabled=true;finish('Bien vu ! '+good+' appartient à la catégorie '+item.title+'.')}else notify('Ce n’est pas dans cette catégorie. Essaie l’autre choix.');});grid.append(b);
  }target.append(grid);
 }
 

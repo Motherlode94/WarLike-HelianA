@@ -65,3 +65,6 @@ Nine guided programming activities recovered from the V15 draft, with explicit s
 
 ## V18 — Independent home spaces
 Home, workshops, accessibility settings and family guidance use distinct hash routes, preserving the existing workshop controls and separate games/pathways/coding pages. No personal data storage added. Browser validation required.
+
+## V28 — Question and answer accessibility
+Separate read-aloud controls for visible questions/text and answer choices. Explicit objective-answer feedback uses green/check and red/cross, with retry and screen-reader labels. Open communication, emotions, drawing, free creation and ordering activities are not graded per button. Existing voice paths are unchanged. Browser verification pending.
