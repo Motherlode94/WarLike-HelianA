@@ -1,0 +1,1 @@
+export const MODELS=Object.freeze(['Libre',...'ABCDEFGHIJKLMNOPQRSTUVWXYZ','É','È','À','Ç',...'0123456789']);export function stepModel(index,delta){return (index+delta+MODELS.length)%MODELS.length;}export function clampPoint(x,y,w=720,h=440){return {x:Math.max(0,Math.min(w,x)),y:Math.max(0,Math.min(h,y))};}
