@@ -59,3 +59,6 @@ La page `coding.html` propose trois activités accessibles de logique informatiq
 ## V16 — Huit nouveaux mini-jeux (20 au total)
 
 La page `games.html` ajoute Les couleurs, Les nombres, Je compte, Les formes, Les contraires, Je me repère, La suite logique et Je fais un choix. Les jeux disposent de banques de consignes, de réponses vérifiables et du même système de niveaux que les douze jeux existants. Le niveau Découverte propose deux réponses possibles, Pratique et Défi en proposent trois. Aucun score ni profil personnel n'est enregistré. Tests : `node --test tests/games.test.mjs tests/games-extra.test.mjs`.
+
+## V17 — Learning Studio recovery
+Nine guided programming activities recovered from the V15 draft, with explicit skip, per-activity scene reset, optional contrast and text sizing. No scores or saved answers. The simulation remains pedagogical, not a WarScript interpreter. Browser and user validation remain required.
